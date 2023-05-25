@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입 페이지</title>
+  <style>
+    /* CSS 스타일을 여기에 추가하세요. */
+  </style>
+</head>
+<body>
+  <h1>회원가입 페이지</h1>
+  
+  <form id="signupForm">
+    <label for="username">사용자 이름:</label>
+    <input type="text" id="username" name="username" required>
+    
+    <label for="email">이메일:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="password">비밀번호:</label>
+    <input type="password" id="password" name="password" required>
+    
+    <button type="submit">가입하기</button>
+  </form>
+  
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    
+    signupForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      // 사용자가 입력한 정보 가져오기
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // 간단한 예시로 가입 처리를 진행하지 않고, 알림 메시지만 출력합니다.
+      alert(`가입 신청이 완료되었습니다.\n사용자 이름: ${username}\n이메일: ${email}`);
+      // 여기에 가입 신청 처리 및 다음 동작을 추가하세요.
+    });
+  </script>
+</body>
+</html>

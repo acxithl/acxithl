@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Playmaker-Basketball</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Playmaker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="baseball.html">Baseball</a></li>
+                                <li><a class="dropdown-item" href="basketball.html">Basketball</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="Football.html">Football</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <header>
+        <h1>Playmaker</h1>
+        <p></p>
+        <a href="login.html">로그인</a> / <a href="signup.html">회원가입</a>
+    </header>
+
+    <main>
+        <section class="products">
+            <h2>상품 목록</h2>
+            <div id="new-products"></div> <!-- 상품이 추가될 요소 -->
+        </section>
+
+        <section class="cart">
+            <h2>장바구니</h2>
+            <ul id="cart-items">
+                <!-- 장바구니 내용 -->
+            </ul>
+            <p id="total-price">총 가격: $0</p>
+            <button id="order-button">주문하기</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Playmaker. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 장바구니에 상품 추가하는 함수
+        function addToCart(item) {
+            // 장바구니 아이템 목록 가져오기
+            var cartItems = document.getElementById("cart-items");
+
+            // 새로운 li 엘리먼트 생성
+            var li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>가격: $${item.price}</p>
+                <button class="remove-button">삭제</button>
+            `;
+
+            // 삭제 버튼에 클릭 이벤트 리스너 추가
+            var removeButton = li.getElementsByClassName("remove-button")[0];
+            removeButton.addEventListener("click", function () {
+                removeFromCart(li);
+            });
+
+            // li 엘리먼트를 장바구니 아이템 목록에 추가
+            cartItems.appendChild(li);
+
+            // 가격 업데이트
+            updateTotalPrice(item.price);
+        }
+
+        // 장바구니에서 상품 삭제하는 함수
+        function removeFromCart(item) {
+            // 상품 li 엘리먼트 제거
+            item.remove();
+
+            // 가격 업데이트
+            var price = parseInt(item.querySelector("p").innerHTML.slice(4));
+            updateTotalPrice(-price);
+        }
+
+        // 총 가격 업데이트하는 함수
+        function updateTotalPrice(price) {
+            var totalPriceElement = document.getElementById("total-price");
+            var totalPrice = parseInt(totalPriceElement.innerHTML.slice(7));
+            totalPrice += price;
+            totalPriceElement.innerHTML = `총 가격: $${totalPrice}`;
+        }
+
+        // 주문하기 버튼 클릭 시 처리하는 함수
+        function placeOrder() {
+            var cartItems = document.getElementById("cart-items");
+            cartItems.innerHTML = "";
+            updateTotalPrice(-parseInt(document.getElementById("total-price").innerHTML.slice(7)));
+            alert("주문이 완료되었습니다!");
+        }
+
+        // 예시 상품 데이터
+        var products = [
+            {
+                name: "스테판 커리",
+                price: 799.99,
+                image: "images/4a485025bd072cefdc8af8b527b3981f.jpg",
+                rating: "★★★★★"
+            },
+            {
+                name: "잭 라빈",
+                price: 489.99,
+                image: "images/11058744-잭라빈_덩크-nba.jpg",
+                rating: "★★★★☆"
+            },
+            {
+                name: "니콜라 요키치",
+                price: 99999.99,
+                image: "images/maxresdefault.jpg",
+                rating: "★★★★★★★★★"
+            }
+        ];
+
+        // 상품 목록에 상품 추가
+        var productContainer = document.getElementById("new-products");
+
+        // Iterate over the products array and create product cards
+        for (var i = 0; i < products.length; i++) {
+            var product = products[i];
+
+            // Create the product card element
+            var productCard = document.createElement("div");
+            productCard.className = "product-card";
+
+            // Create the product image element
+            var productImage = document.createElement("img");
+            productImage.className = "product-image";
+            productImage.src = product.image;
+            productImage.alt = "제품 이미지";
+            productCard.appendChild(productImage);
+
+            // Create the product name element
+            var productName = document.createElement("h3");
+            productName.textContent = product.name;
+            productCard.appendChild(productName);
+
+            // Create the product price element
+            var productPrice = document.createElement("p");
+            productPrice.textContent = "가격: $" + product.price.toFixed(2);
+            productCard.appendChild(productPrice);
+
+            // Create the product rating element
+            var productRating = document.createElement("p");
+            productRating.textContent = "평가: " + product.rating;
+            productCard.appendChild(productRating);
+
+            // Create the add to cart button
+            var addToCartButton = document.createElement("button");
+            addToCartButton.textContent = "장바구니에 담기";
+            addToCartButton.addEventListener("click", function (currentProduct) {
+                return function () {
+                    addToCart(currentProduct);
+                };
+            }(product)); // 클로저를 이용하여 현재 상품을 전달
+            productCard.appendChild(addToCartButton);
+
+            // Add the product card to the product container
+            productContainer.appendChild(productCard);
+        }
+
+    </script>
+
+    <footer>
+        <p>회사 정보</p>
+        <p>저작권 정보</p>
+    </footer>
+</body>
+
+</html>

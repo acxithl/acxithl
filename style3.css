@@ -1,0 +1,77 @@
+/* Reset default browser styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    background-image: url("images/zach-lavine-dunk-contest-021319-ftr-nba-getty_koxxykpkqk9313b34qgp09f3c.jpg");
+    background-size: cover;
+    background-position-y: 650px;
+    height: 600px;
+  }
+  
+  nav {
+    background-color: #eee;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  section {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #banner {
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  #new-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .product-card {
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .product-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
